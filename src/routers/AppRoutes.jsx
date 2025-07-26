@@ -11,6 +11,7 @@ import ShopNow from "../pages/frontend/ShopNow";
 import About from "../pages/frontend/About";
 import DeliveryTeam from "../pages/frontend/DeliveryTeam";
 import Sellers from "../pages/frontend/Sellers";
+import Cart from "../pages/frontend/Cart";
 
 // Admin Pages
 import Admin from "../pages/admin/Admin";
@@ -32,6 +33,7 @@ const AppRoutes = () => {
           <Route path="about" element={<About />} />
           <Route path="delivery-team" element={<DeliveryTeam />} />
           <Route path="sellers" element={<Sellers />} />
+          <Route path="cart" element={<Cart />} />
         </Route>
 
         {/* Admin Routes */}

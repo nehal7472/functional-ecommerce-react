@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCart, Menu } from "lucide-react";
 import ThemeToggle from "../Theme/ThemeToggle";
+import { useSelector } from "react-redux";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -12,6 +13,9 @@ const navItems = [
 ];
 
 const FrontendHeader = () => {
+  const totalItems = useSelector((state) =>
+    state.cart.items.reduce((total, item) => total + item.quantity, 0)
+  );
   return (
     <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 lg:px-8">
       {/* Left: Logo + Mobile Dropdown */}
@@ -71,14 +75,14 @@ const FrontendHeader = () => {
       <div className="navbar-end gap-2">
         {/* Dark Mode Toggle */}
         {/* Dark Mode Toggle */}
-        <ThemeToggle/>
+        <ThemeToggle />
 
         {/* Cart Icon */}
         <NavLink to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
             <ShoppingCart className="w-5 h-5" />
             <span className="badge badge-sm badge-primary indicator-item">
-              2
+              {totalItems}
             </span>
           </div>
         </NavLink>
