@@ -1,12 +1,37 @@
-# React + Vite
+# 🛍️ Async Store – React E-Commerce App with Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link -> https://functional-ecommerce-react.vercel.app/
 
-Currently, two official plugins are available:
+A modern, responsive, and full-featured e-commerce web application built using **React**, **Redux Toolkit**, **React Router**, and **Tailwind CSS**. Includes both a customer-facing storefront and a secure **Admin Panel** to manage products.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🛒 Storefront (User)
+- Browse products by category, search, and filter
+- View product details
+- Add to cart
+- Cart management (increase, decrease, remove items)
+- Cart saved to **localStorage**
+- Dark/Light theme toggle (global via Redux)
+- Responsive layout (mobile-friendly)
+
+### ⚙️ Admin Panel
+- Sidebar navigation (dashboard layout)
+- Admin header with user menu and notifications
+- Admin theme toggle with Redux
+- Manage product-related components (extendable)
+
+---
+
+## 🧑‍💻 Tech Stack
+
+| Frontend          | State Management     | Styling            | Routing             |
+|-------------------|----------------------|---------------------|---------------------|
+| React             | Redux Toolkit (RTK)  | Tailwind CSS + DaisyUI | React Router DOM   |
+
+---
+
+## 📦 Folder Structure
+
