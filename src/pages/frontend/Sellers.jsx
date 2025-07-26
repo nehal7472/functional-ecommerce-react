@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const sellers = [
   {
@@ -56,7 +58,13 @@ const Sellers = () => {
       </section>
 
       {/* Seller Grid */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto">
+      <motion.section
+        variants={fadeIn("up", 0)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.7 }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto"
+      >
         {sellers.map(({ name, storeName, photo, bio, contact }) => (
           <div
             key={name}
@@ -84,7 +92,7 @@ const Sellers = () => {
             </a>
           </div>
         ))}
-      </section>
+      </motion.section>
 
       {/* Call to Action */}
       <section className="text-center max-w-3xl mx-auto mt-20">

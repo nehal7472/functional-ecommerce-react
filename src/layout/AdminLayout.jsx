@@ -52,6 +52,11 @@ const AdminLayout = () => {
       to: "/admin/export",
       icon: <UploadCloud className="w-5 h-5" />,
     },
+    {
+      label: "Go to Frontend",
+      to: "/",
+      icon: <UploadCloud className="w-5 h-5 animate-bounce text-red-600" />,
+    },
   ];
 
   return (

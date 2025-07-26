@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const Feature = () => {
   const mode = useSelector((state) => state.theme.mode);
@@ -20,7 +22,11 @@ const Feature = () => {
   ];
 
   return (
-    <section
+    <motion.section
+      variants={fadeIn("up", 0)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.7 }}
       className={`py-16 px-4 ${
         mode === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
       }`}
@@ -50,7 +56,7 @@ const Feature = () => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

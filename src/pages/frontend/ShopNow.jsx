@@ -8,6 +8,8 @@ import {
   setColor,
 } from "../../features/filters/filterSlice";
 import ProductCard from "../../components/frontend/ProductCard";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const ShopNow = () => {
   const dispatch = useDispatch();

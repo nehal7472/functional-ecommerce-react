@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const teamMembers = [
   {
@@ -35,7 +37,13 @@ const About = () => {
         }`}
     >
       {/* Header */}
-      <section className="mb-16 text-center max-w-4xl mx-auto">
+      <motion.section
+        variants={fadeIn("up", 0)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.7 }}
+        className="mb-16 text-center max-w-4xl mx-auto"
+      >
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           About <span className="text-pink-600">Async Store</span>
         </h1>
@@ -44,31 +52,47 @@ const About = () => {
           Quality products, seamless experience, and customer-first approach are
           our guiding principles.
         </p>
-      </section>
+      </motion.section>
 
       {/* Mission & Vision */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-        <div>
+        <motion.div
+          variants={fadeIn("right", 0)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.7 }}
+        >
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
           <p className="text-base md:text-lg leading-relaxed">
             To provide our customers with the best quality products, a
             hassle-free shopping experience, and exceptional customer service,
             all while embracing sustainable and ethical business practices.
           </p>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          variants={fadeIn("right", 0)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.7 }}
+        >
           <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
           <p className="text-base md:text-lg leading-relaxed">
             To become the most trusted and preferred e-commerce platform, known
             for innovation, reliability, and a community-centric approach.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Core Values */}
       <section className="mb-20">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Core Values</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <motion.div
+          variants={fadeIn("up", 0)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.7 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
+        >
           {[
             {
               title: "Customer First",
@@ -173,13 +197,19 @@ const About = () => {
               <p className="text-center text-sm">{desc}</p>
             </div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Team Section */}
       <section className="mb-20">
         <h2 className="text-3xl font-bold mb-12 text-center">Meet Our Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <motion.div
+          variants={fadeIn("up", 0)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.7 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto"
+        >
           {teamMembers.map(({ name, role, photo, bio }) => (
             <div
               key={name}
@@ -197,7 +227,7 @@ const About = () => {
               <p className="text-sm">{bio}</p>
             </div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Call to Action */}

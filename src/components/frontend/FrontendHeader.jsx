@@ -10,6 +10,7 @@ const navItems = [
   { label: "About", to: "/about" },
   { label: "Delivery Team", to: "/delivery-team" },
   { label: "Sellers", to: "/sellers" },
+  { label: "Admin", to: "/admin" },
 ];
 
 const FrontendHeader = () => {

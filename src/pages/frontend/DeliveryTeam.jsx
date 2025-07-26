@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const deliveryTeam = [
   {
@@ -38,7 +40,11 @@ const DeliveryTeam = () => {
   return (
     <main
       className={`min-h-screen px-6 md:px-20 py-16  mx-auto
-        ${mode === "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-900"}`}
+        ${
+          mode === "dark"
+            ? "bg-gray-900 text-gray-200"
+            : "bg-white text-gray-900"
+        }`}
     >
       <section className="mb-16 text-center max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
@@ -50,7 +56,13 @@ const DeliveryTeam = () => {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto">
+      <motion.section
+        variants={fadeIn("up", 0)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.7 }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto"
+      >
         {deliveryTeam.map(({ name, role, photo, bio, contact }) => (
           <div
             key={name}
@@ -69,14 +81,16 @@ const DeliveryTeam = () => {
             <a
               href={`mailto:${contact}`}
               className={`text-sm font-semibold underline transition-colors ${
-                mode === "dark" ? "text-pink-400 hover:text-pink-600" : "text-pink-600 hover:text-pink-800"
+                mode === "dark"
+                  ? "text-pink-400 hover:text-pink-600"
+                  : "text-pink-600 hover:text-pink-800"
               }`}
             >
               {contact}
             </a>
           </div>
         ))}
-      </section>
+      </motion.section>
 
       <section className="text-center max-w-3xl mx-auto mt-20">
         <h2 className="text-3xl font-bold mb-6">Interested in Joining?</h2>
@@ -87,7 +101,7 @@ const DeliveryTeam = () => {
         </p>
         <button
           className="px-8 py-3 bg-pink-600 hover:bg-pink-700 text-white font-semibold rounded-md transition"
-          onClick={() => window.location.href = "#"}
+          onClick={() => (window.location.href = "#")}
         >
           Contact Us
         </button>

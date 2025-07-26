@@ -5,6 +5,11 @@ import { Menu, Bell, UserCircle2 } from "lucide-react";
 const AdminHeader = () => {
   const mode = useSelector((state) => state.theme.mode);
 
+  const hoverClass =
+    mode === "dark"
+      ? "hover:bg-gray-800 text-white"
+      : "hover:bg-gray-100 text-black";
+
   return (
     <header
       className={`flex items-center justify-between p-4 border-b transition-colors duration-300 ${
@@ -25,10 +30,12 @@ const AdminHeader = () => {
 
       {/* Right: Notifications and profile */}
       <div className="flex items-center gap-4">
-        <button className="btn btn-ghost btn-circle">
+        <button className={`btn btn-ghost btn-circle ${hoverClass}`}>
           <div className="indicator">
             <Bell className="w-5 h-5" />
-            <span className="badge badge-sm indicator-item badge-error">3</span>
+            <span className="w-5 h-5 badge badge-sm indicator-item badge-error rounded-full">
+              3
+            </span>
           </div>
         </button>
 
@@ -39,7 +46,9 @@ const AdminHeader = () => {
           <ul
             tabIndex={0}
             className={`mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-40 transition-colors duration-300 ${
-              mode === "dark" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
+              mode === "dark"
+                ? "bg-gray-800 text-white"
+                : "bg-gray-200 text-black"
             }`}
           >
             <li>
