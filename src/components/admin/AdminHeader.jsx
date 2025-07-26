@@ -1,10 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Menu, Bell, UserCircle2 } from "lucide-react";
 
 const AdminHeader = () => {
+  const mode = useSelector((state) => state.theme.mode);
+
   return (
-    <header className="flex items-center justify-between p-4 border-b bg-base-100">
-      {/* Left: Logo or Sidebar Toggle */}
+    <header
+      className={`flex items-center justify-between p-4 border-b transition-colors duration-300 ${
+        mode === "dark"
+          ? "bg-gray-900 border-gray-700 text-white"
+          : "bg-white border-gray-200 text-gray-900"
+      }`}
+    >
+      {/* Left: Sidebar toggle and title */}
       <div className="flex items-center gap-2">
         <button className="md:hidden btn btn-square btn-ghost">
           <Menu className="w-5 h-5" />
@@ -14,7 +23,7 @@ const AdminHeader = () => {
         </h1>
       </div>
 
-      {/* Right: Notification + User */}
+      {/* Right: Notifications and profile */}
       <div className="flex items-center gap-4">
         <button className="btn btn-ghost btn-circle">
           <div className="indicator">
@@ -29,16 +38,20 @@ const AdminHeader = () => {
           </label>
           <ul
             tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-40"
+            className={`mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-40 transition-colors duration-300 ${
+              mode === "dark" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
+            }`}
           >
             <li>
-              <a>Profile</a>
+              <a className="hover:bg-primary hover:text-white">Profile</a>
             </li>
             <li>
-              <a>Settings</a>
+              <a className="hover:bg-primary hover:text-white">Settings</a>
             </li>
             <li>
-              <a className="text-red-500">Logout</a>
+              <a className="text-red-500 hover:bg-red-100 dark:hover:bg-red-900">
+                Logout
+              </a>
             </li>
           </ul>
         </div>

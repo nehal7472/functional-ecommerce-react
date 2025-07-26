@@ -10,6 +10,7 @@ import {
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const mode = useSelector((state) => state.theme.mode);
 
   // Calculate total price
   const totalPrice = cartItems.reduce(
@@ -18,19 +19,27 @@ const Cart = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+    <div
+      className={` p-4 sm:p-6 lg:p-8 ${
+        mode === "dark" ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"
+      }`}
+    >
+      <h1 className="text-3xl font-bold mb-6">
         Your Cart
       </h1>
 
       {cartItems.length === 0 ? (
-        <p className="text-center text-gray-600 dark:text-gray-300">
+        <p className="text-center">
           Your cart is empty.
         </p>
       ) : (
         <>
           <div className="overflow-x-auto">
-            <table className="table w-full table-zebra dark:table-zebra-dark">
+            <table
+              className={`table w-full ${
+                mode === "dark" ? "table-zebra-dark" : "table-zebra"
+              }`}
+            >
               <thead>
                 <tr>
                   <th>Product</th>
@@ -49,7 +58,7 @@ const Cart = () => {
                         alt={product.title}
                         className="w-16 h-16 object-cover rounded-md"
                       />
-                      <span className="font-semibold text-gray-900 dark:text-white">
+                      <span className="font-semibold">
                         {product.title}
                       </span>
                     </td>
@@ -60,7 +69,9 @@ const Cart = () => {
                           onClick={() =>
                             dispatch(decreaseQuantity(product._id))
                           }
-                          className="btn btn-xs btn-outline"
+                          className={`btn btn-xs btn-outline ${
+                            mode === "dark" ? "btn-info" : ""
+                          }`}
                           aria-label="Decrease quantity"
                         >
                           −
@@ -70,7 +81,9 @@ const Cart = () => {
                           onClick={() =>
                             dispatch(increaseQuantity(product._id))
                           }
-                          className="btn btn-xs btn-outline"
+                          className={`btn btn-xs btn-outline ${
+                            mode === "dark" ? "btn-info" : ""
+                          }`}
                           aria-label="Increase quantity"
                         >
                           +
@@ -99,11 +112,13 @@ const Cart = () => {
           <div className="mt-6 flex flex-col sm:flex-row sm:justify-between items-center gap-4">
             <button
               onClick={() => dispatch(clearCart())}
-              className="btn btn-error btn-outline sm:order-2"
+              className={`btn btn-error btn-outline sm:order-2 ${
+                mode === "dark" ? "btn-info" : ""
+              }`}
             >
               Clear Cart
             </button>
-            <div className="text-2xl font-bold text-gray-900 dark:text-white sm:order-1">
+            <div className="text-2xl font-bold sm:order-1">
               Total: ৳ {totalPrice.toLocaleString()}
             </div>
           </div>

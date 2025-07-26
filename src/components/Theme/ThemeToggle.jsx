@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme, setTheme } from "../../features/theme/themeSlice";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState("light");
+  const theme = useSelector((state) => state.theme.mode);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "light";
-    setTheme(storedTheme);
-    document.documentElement.setAttribute("data-theme", storedTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
+    dispatch(setTheme(theme));
+  }, [dispatch]);
 
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`font-semibold transition-colors duration-300 ${
+        className={`hidden md:flex  font-semibold transition-colors duration-300 ${
           theme === "light" ? "text-slate-900" : "text-slate-400"
         }`}
       >
@@ -27,21 +22,19 @@ const ThemeToggle = () => {
       </span>
 
       <button
-        onClick={toggleTheme}
+        onClick={() => dispatch(toggleTheme())}
         className={`relative flex items-center w-16 h-8 rounded-full p-1 transition-colors duration-500 ${
           theme === "light"
             ? "bg-gradient-to-r from-blue-400 to-blue-500"
             : "bg-gray-700"
         }`}
       >
-        {/* Thumb */}
         <span
           className={`absolute h-6 w-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
             theme === "light" ? "translate-x-0" : "translate-x-8"
           }`}
         ></span>
 
-        {/* Bubbles (light theme only) */}
         {theme === "light" && (
           <>
             <span className="absolute right-2 top-1 w-2 h-2 bg-white rounded-full opacity-90"></span>
@@ -51,7 +44,7 @@ const ThemeToggle = () => {
       </button>
 
       <span
-        className={`font-semibold transition-colors duration-300 ${
+        className={`hidden md:flex  font-semibold transition-colors duration-300 ${
           theme === "dark" ? "text-slate-100" : "text-slate-400"
         }`}
       >

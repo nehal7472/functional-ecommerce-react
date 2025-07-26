@@ -12,6 +12,7 @@ import About from "../pages/frontend/About";
 import DeliveryTeam from "../pages/frontend/DeliveryTeam";
 import Sellers from "../pages/frontend/Sellers";
 import Cart from "../pages/frontend/Cart";
+import SingleCardDetails from "../pages/frontend/SingleCardDetails";
 
 // Admin Pages
 import Admin from "../pages/admin/Admin";
@@ -21,6 +22,7 @@ import Reports from "../pages/admin/Reports";
 import Geography from "../pages/admin/Geography";
 import Conversations from "../pages/admin/Conversations";
 import Export from "../pages/admin/Export";
+import ErrorPage from "../pages/frontend/ErrorPage";
 
 const AppRoutes = () => {
   return (
@@ -34,6 +36,9 @@ const AppRoutes = () => {
           <Route path="delivery-team" element={<DeliveryTeam />} />
           <Route path="sellers" element={<Sellers />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="/product/:id" element={<SingleCardDetails />} />
+          <Route path="*" element={<ErrorPage />} />
+
         </Route>
 
         {/* Admin Routes */}

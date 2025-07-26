@@ -16,9 +16,15 @@ const FrontendHeader = () => {
   const totalItems = useSelector((state) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
+
+  const mode = useSelector((state) => state.theme.mode);
+
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 lg:px-8">
-      {/* Left: Logo + Mobile Dropdown */}
+    <div
+      className={`navbar shadow-md sticky top-0 z-50 px-4 lg:px-8 ${
+        mode === "light" ? "bg-white text-black" : "bg-gray-900 text-white"
+      }`}
+    >
       <div className="navbar-start gap-2">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,14 +32,20 @@ const FrontendHeader = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+            className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 ${
+              mode === "dark" ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
+            }`}
           >
             {navItems.map(({ label, to }) => (
               <li key={to}>
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    isActive ? "text-primary font-semibold" : ""
+                    isActive
+                      ? "text-primary font-semibold"
+                      : mode === "dark"
+                      ? "hover:text-primary transition-colors duration-200 text-white"
+                      : "hover:text-primary transition-colors duration-200"
                   }
                 >
                   {label}
@@ -45,7 +57,9 @@ const FrontendHeader = () => {
 
         <NavLink
           to="/"
-          className="text-xl font-bold tracking-tight text-primary hover:opacity-80"
+          className={`text-xl font-bold tracking-tight text-primary hover:opacity-80 ${
+            mode === "dark" ? "text-white" : ""
+          }`}
         >
           🛍️ ShopEase
         </NavLink>
@@ -61,6 +75,8 @@ const FrontendHeader = () => {
                 className={({ isActive }) =>
                   isActive
                     ? "font-semibold text-primary"
+                    : mode === "dark"
+                    ? "hover:text-primary transition-colors duration-200 text-white"
                     : "hover:text-primary transition-colors duration-200"
                 }
               >
@@ -74,13 +90,14 @@ const FrontendHeader = () => {
       {/* Right: Dark Toggle + Cart */}
       <div className="navbar-end gap-2">
         {/* Dark Mode Toggle */}
-        {/* Dark Mode Toggle */}
         <ThemeToggle />
 
         {/* Cart Icon */}
         <NavLink to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart
+              className={`${mode === "dark" ? "text-white" : ""} w-5 h-5`}
+            />
             <span className="badge badge-sm badge-primary indicator-item">
               {totalItems}
             </span>

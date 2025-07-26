@@ -1,5 +1,5 @@
 import React from "react";
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {
   LayoutDashboard,
   Package,
@@ -9,11 +9,13 @@ import {
   MessagesSquare,
   UploadCloud,
 } from "lucide-react";
+import { useSelector } from "react-redux";
 import AdminHeader from "../components/admin/AdminHeader";
 import AdminSidebar from "../components/admin/AdminSidebar";
-import ThemeToggle from "../components/Theme/ThemeToggle";
 
 const AdminLayout = () => {
+  const mode = useSelector((state) => state.theme.mode);
+
   const navItems = [
     {
       label: "Dashboard",
@@ -50,11 +52,14 @@ const AdminLayout = () => {
       to: "/admin/export",
       icon: <UploadCloud className="w-5 h-5" />,
     },
-
   ];
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[240px_1fr] bg-base-100">
+    <div
+      className={`min-h-screen grid grid-cols-1 md:grid-cols-[240px_1fr] transition-colors duration-300 ${
+        mode === "dark" ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
+      }`}
+    >
       {/* Sidebar */}
       <AdminSidebar navItems={navItems} />
 
