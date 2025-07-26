@@ -37,7 +37,7 @@ const Cart = () => {
           <div className="overflow-x-auto">
             <table
               className={`table w-full ${
-                mode === "dark" ? "table-zebra-dark" : "table-zebra"
+                mode === "dark" ? "table-zebra-dark" : ""
               }`}
             >
               <thead>
