@@ -4,11 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "daisyui";
 
-body{
-  background-color: beige;
-  padding: 0;
-  margin: 0;
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

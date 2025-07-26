@@ -1,7 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Load cart from localStorage or use empty array
+const loadCartFromStorage = () => {
+  const storedCart = localStorage.getItem("cartItems");
+  return storedCart ? JSON.parse(storedCart) : [];
+};
+
+const saveCartToStorage = (items) => {
+  localStorage.setItem("cartItems", JSON.stringify(items));
+};
+
 const initialState = {
-  items: [], // { product, quantity }
+  items: loadCartFromStorage(),
 };
 
 const cartSlice = createSlice({
@@ -10,21 +20,29 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const newProduct = action.payload;
-      const exists = state.items.find(
+      const existing = state.items.find(
         (item) => item.product._id === newProduct._id
       );
-      if (!exists) {
+
+      if (!existing) {
         state.items.push({ product: newProduct, quantity: 1 });
       }
+
+      saveCartToStorage(state.items);
     },
+
     removeFromCart: (state, action) => {
       state.items = state.items.filter(
         (item) => item.product._id !== action.payload
       );
+      saveCartToStorage(state.items);
     },
+
     clearCart: (state) => {
       state.items = [];
+      saveCartToStorage(state.items);
     },
+
     increaseQuantity: (state, action) => {
       const item = state.items.find(
         (item) => item.product._id === action.payload
@@ -32,7 +50,9 @@ const cartSlice = createSlice({
       if (item) {
         item.quantity += 1;
       }
+      saveCartToStorage(state.items);
     },
+
     decreaseQuantity: (state, action) => {
       const item = state.items.find(
         (item) => item.product._id === action.payload
@@ -40,6 +60,7 @@ const cartSlice = createSlice({
       if (item && item.quantity > 1) {
         item.quantity -= 1;
       }
+      saveCartToStorage(state.items);
     },
   },
 });

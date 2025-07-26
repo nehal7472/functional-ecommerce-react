@@ -33,7 +33,9 @@ const FrontendHeader = () => {
           <ul
             tabIndex={0}
             className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 ${
-              mode === "dark" ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
+              mode === "dark"
+                ? "bg-gray-800 text-white"
+                : "bg-gray-300 text-black"
             }`}
           >
             {navItems.map(({ label, to }) => (
@@ -93,14 +95,19 @@ const FrontendHeader = () => {
         <ThemeToggle />
 
         {/* Cart Icon */}
-        <NavLink to="/cart" className="btn btn-ghost btn-circle">
-          <div className="indicator">
-            <ShoppingCart
-              className={`${mode === "dark" ? "text-white" : ""} w-5 h-5`}
-            />
-            <span className="badge badge-sm badge-primary indicator-item">
-              {totalItems}
-            </span>
+        <NavLink
+          to="/cart"
+          className="fixed bottom-4 right-4 z-50 btn btn-circle btn-info shadow-lg animate-bounce"
+        >
+          <div className="relative">
+            <ShoppingCart className="w-6 h-6 text-white" />
+            {totalItems > 0 && (
+              <span
+                className={`absolute -top-2 -right-2 w-5 h-5 text-[10px] font-bold rounded-full bg-red-500 text-white flex items-center justify-center `}
+              >
+                {totalItems}
+              </span>
+            )}
           </div>
         </NavLink>
       </div>
